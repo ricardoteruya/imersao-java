@@ -13,6 +13,8 @@ public class App {
 
 	public static void main(String[] args) throws Exception {
 		
+		String DIRETORIO = "saida";
+		
 		//Usando api alternativa fornecida pelos instrutores
 		String url = "https://alura-filmes.herokuapp.com/conteudos";
 		URI uri = URI.create(url);
@@ -26,7 +28,6 @@ public class App {
 		List<Map<String,String>> listaDeFilmes = parser.parse(body);
 		
 		var geradora = new GeradoraDeFigurinhas();
-		String DIRETORIO = "saida";
 		for (Map<String, String> filme : listaDeFilmes) {
 			String titulo = filme.get("title");
 			String nomeArquivo = DIRETORIO + "/" + titulo + ".png";
@@ -35,8 +36,7 @@ public class App {
 			InputStream inputStream = new URL(urlImagem).openStream();
 			
 			geradora.cria(inputStream, nomeArquivo);
-			System.out.println();
-			
+			System.out.println();			
 			
 //			System.out.println(filme.get("title"));
 //			System.out.println(filme.get("image"));
